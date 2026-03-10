@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VideoLinkFinder — Test Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #08080e;
+      color: #e2e8f0;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 24px;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 18px;
+      color: #a78bfa;
+      letter-spacing: 0.05em;
+    }
+    p { font-size: 13px; color: #64748b; text-align: center; }
+    video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 10px;
+      border: 1px solid #1e1e2e;
+      background: #000;
+    }
+    .hint {
+      font-size: 12px;
+      color: #374151;
+      background: #13131c;
+      border: 1px solid #1e1e2e;
+      border-radius: 8px;
+      padding: 12px 20px;
+      max-width: 500px;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .hint span { color: #7c3aed; }
+  </style>
+</head>
+<body>
+  <h1>🔍 VideoLinkFinder — Test Page</h1>
+  <p>HLS stream is loading. Click play, then check the extension.</p>
+  <video id="video" controls autoplay muted></video>
+  <div class="hint">
+    After pressing Play — open <span>VideoLinkFinder</span> popup.<br>
+    It should detect the <span>.m3u8</span> stream URL automatically.
+  </div>
+  <script>
+    const video = document.getElementById('video');
+    const src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+    }
+  </script>
+</body>
+</html>
