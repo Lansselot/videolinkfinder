@@ -59,7 +59,6 @@
       padding: 60px 24px 80px;
     }
 
-    /* Header */
     .header {
       display: flex;
       align-items: center;
@@ -93,7 +92,6 @@
       margin-top: 2px;
     }
 
-    /* Hero */
     .hero {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -142,11 +140,10 @@
       border: 1px solid;
     }
 
-    .badge-green { color: var(--green); border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.08); }
-    .badge-purple { color: #a78bfa; border-color: rgba(124,58,237,.3); background: rgba(124,58,237,.08); }
-    .badge-cyan { color: var(--cyan); border-color: rgba(6,182,212,.3); background: rgba(6,182,212,.08); }
+    .badge-green  { color: var(--green);  border-color: rgba(16,185,129,.3);  background: rgba(16,185,129,.08); }
+    .badge-purple { color: #a78bfa;       border-color: rgba(124,58,237,.3);  background: rgba(124,58,237,.08); }
+    .badge-cyan   { color: var(--cyan);   border-color: rgba(6,182,212,.3);   background: rgba(6,182,212,.08);  }
 
-    /* Sections */
     .section {
       margin-bottom: 32px;
       background: var(--surface);
@@ -164,9 +161,7 @@
       background: rgba(124,58,237,0.05);
     }
 
-    .section-icon {
-      font-size: 16px;
-    }
+    .section-icon { font-size: 16px; }
 
     .section-title {
       font-size: 14px;
@@ -176,9 +171,7 @@
       color: #a78bfa;
     }
 
-    .section-body {
-      padding: 20px 24px;
-    }
+    .section-body { padding: 20px 24px; }
 
     .section-body p {
       font-size: 14px;
@@ -187,27 +180,37 @@
     }
 
     .section-body p:last-child { margin-bottom: 0; }
+    .section-body strong { color: var(--text); font-weight: 600; }
 
-    .section-body strong {
-      color: var(--text);
-      font-weight: 600;
+    .no-collect {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    /* Permission table */
-    .perm-list {
-      list-style: none;
+    .no-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #94a3b8;
+      padding: 8px 0;
     }
+
+    .no-icon { color: var(--green); font-size: 14px; flex-shrink: 0; }
+
+    .perm-list { list-style: none; }
 
     .perm-item {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 130px 1fr;
       gap: 12px;
       padding: 12px 0;
       border-bottom: 1px solid rgba(30,30,50,0.8);
       align-items: start;
     }
 
-    .perm-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .perm-item:last-child  { border-bottom: none; padding-bottom: 0; }
     .perm-item:first-child { padding-top: 0; }
 
     .perm-name {
@@ -229,29 +232,6 @@
       line-height: 1.6;
     }
 
-    /* No-collect block */
-    .no-collect {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .no-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: #94a3b8;
-      padding: 8px 0;
-    }
-
-    .no-icon {
-      color: var(--green);
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    /* Footer */
     .footer {
       margin-top: 48px;
       padding-top: 24px;
@@ -259,24 +239,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: gap;
     }
 
-    .footer-text {
-      font-size: 12px;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .footer-date {
-      font-size: 11px;
-      color: #374151;
-      font-family: 'JetBrains Mono', monospace;
-    }
+    .footer-text  { font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .footer-date  { font-size: 11px; color: #374151;       font-family: 'JetBrains Mono', monospace; }
 
     @media (max-width: 560px) {
       .no-collect { grid-template-columns: 1fr; }
-      .perm-item { grid-template-columns: 1fr; gap: 6px; }
+      .perm-item  { grid-template-columns: 1fr; gap: 6px; }
       .hero-title { font-size: 22px; }
     }
   </style>
@@ -293,7 +263,7 @@
     <div class="logo-box">🔍</div>
     <div>
       <div class="logo-name">VideoLinkFinder</div>
-      <div class="logo-sub">Chrome Extension</div>
+      <div class="logo-sub">Chrome Extension · v1.2.0</div>
     </div>
   </div>
 
@@ -369,27 +339,19 @@
       <ul class="perm-list">
         <li class="perm-item">
           <span class="perm-name">webRequest</span>
-          <span class="perm-desc">Monitors network requests to detect video file URLs (.m3u8, .mpd, .mp4, etc.) as they load. No request content or user data is read — only the URL pattern is checked.</span>
-        </li>
-        <li class="perm-item">
-          <span class="perm-name">activeTab</span>
-          <span class="perm-desc">Identifies the current tab to correctly associate detected video sources with the page you are viewing.</span>
-        </li>
-        <li class="perm-item">
-          <span class="perm-name">scripting</span>
-          <span class="perm-desc">Injects a content script to patch XMLHttpRequest and fetch on the page, catching video URLs requested by JavaScript-based video players.</span>
+          <span class="perm-desc">Monitors outgoing network requests to detect video file URLs (.m3u8, .mpd, .mp4, etc.) as they load. Only URL patterns are inspected — no request content, cookies or user data is read.</span>
         </li>
         <li class="perm-item">
           <span class="perm-name">storage</span>
-          <span class="perm-desc">Saves your language preference locally on your device only.</span>
+          <span class="perm-desc">Saves your language preference (EN / RU / UK) locally on your device only. No other data is ever written.</span>
         </li>
         <li class="perm-item">
           <span class="perm-name">tabs</span>
-          <span class="perm-desc">Used to scope detected video sources per tab and to open video URLs in a new tab when you click "Open".</span>
+          <span class="perm-desc">Used to scope detected video sources per browser tab, clear sources when a tab navigates or closes, and to open video URLs in a new tab when you click "Open".</span>
         </li>
         <li class="perm-item">
           <span class="perm-name">&lt;all_urls&gt;</span>
-          <span class="perm-desc">Required because video content can be served from any domain or CDN. The extension only inspects URL patterns — it does not read page content, form data or any personal information.</span>
+          <span class="perm-desc">Required because video content can be served from any domain or CDN. It is technically impossible to predict which hostnames will serve video files. The extension only inspects URL patterns — it does not read page content, form data or any personal information.</span>
         </li>
       </ul>
     </div>
